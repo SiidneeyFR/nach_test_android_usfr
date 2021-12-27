@@ -1,6 +1,32 @@
 <resources>
     <string name="app_name">nach_test</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Películas</string>
+    <string name="title_dashboard">Mis Ubicaciones</string>
+    <string name="title_notifications">Imagenes</string>
+
+    <!-- textos main activity -->
+    <string name="activity_main_notification_title">Nueva ubicación</string>
+    <string name="activity_main_notification_content">Tu ubicación es:\n Lat: %s, Long: %s</string>
+
+    <!-- textos movies fragment-->
+    <string name="fragment_movies_tv_empty">No se encontraron películas</string>
+
+    <!-- textos default view movie -->
+    <string name="view_movie_default_title">Spider-Man: No Way Home</string>
+    <string name="view_movie_default_description">Por primera vez en la historia cinematográfica de
+        Spider-Man, nuestro héroe, vecino y amigo es desenmascarado, y por tanto, ya no es capaz de
+        separar su vida normal de los enormes riesgos que conlleva ser un superhéroe. Cuando pide ayuda
+        al Doctor Strange, los riesgos pasan a ser aún más peligrosos, obligándole a descubrir lo que
+        realmente significa ser él.</string>
+    <string name="view_movie_default_original_title">Spider-Man: No Way Home</string>
+    <string name="view_movie_default_release_date">2021-12-15</string>
+    <string name="view_movie_default_vote_average">8.5</string>
+    <string name="view_movie_default_vote_count">2196</string>
+
+    <!-- textos de view movie -->
+    <string name="view_movie_original_title"><![CDATA[<b>Título original:</b>]]> %s</string>
+    <string name="view_movie_release_date"><![CDATA[<b>Fecha de lanzamiento:</b>]]> %s</string>
+    <string name="view_movie_vote_average"><![CDATA[<b>Promedio de votos:</b>]]> %s</string>
+    <string name="view_movie_vote_count"><![CDATA[<b>Total de votos:</b>]]> %s</string>
+
 </resources>
