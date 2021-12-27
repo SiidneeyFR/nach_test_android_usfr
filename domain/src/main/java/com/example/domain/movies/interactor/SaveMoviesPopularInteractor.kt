@@ -8,18 +8,17 @@ import com.example.domain.movies.repository.MoviesRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetMoviesPopularInteractor @Inject constructor(
+class SaveMoviesPopularInteractor @Inject constructor(
     private val moviesRepository: MoviesRepository,
     threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread
-) : SingleUseCase<List<Movie>, GetMoviesPopularInteractor.Params>(threadExecutor, postExecutionThread){
+) : SingleUseCase<String?, SaveMoviesPopularInteractor.Params>(threadExecutor, postExecutionThread){
 
-    override fun buildUseCaseObservable(params: Params): Single<List<Movie>> {
-        return moviesRepository.getMoviesPopular(params.apiKey, params.haveInternet)
+    override fun buildUseCaseObservable(params: Params): Single<String?> {
+        return moviesRepository.saveMoviesPopular(params.movies)
     }
 
     data class Params(
-        val apiKey: String,
-        val haveInternet: Boolean
+        val movies: List<Movie>
     )
 }

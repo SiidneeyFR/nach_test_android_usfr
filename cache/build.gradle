@@ -1,6 +1,17 @@
-plugins {
-    id 'java-library'
-    id 'kotlin'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
 }
 
 java {
@@ -9,5 +20,13 @@ java {
 }
 
 dependencies {
+    implementation project(path: ':data')
+    implementation project(':domain')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "javax.inject:javax.inject:$javax_inject_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
 }

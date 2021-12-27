@@ -15,6 +15,7 @@ import com.example.nach_test.R
 import com.example.nach_test.databinding.FragmentMoviesBinding
 import com.example.nach_test.presenation.movies.MoviesContract
 import com.example.nach_test.presenation.movies.MoviesPresenter
+import com.example.nach_test.ui.utils.NetworkUtil
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
@@ -45,7 +46,10 @@ class MoviesFragment : Fragment(), MoviesContract.View, HasSupportFragmentInject
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        moviesPresenter.getMoviesPopular(GetMoviesPopularInteractor.Params(BuildConfig.API_KEY))
+        val haveInternet = context?.let { NetworkUtil().haveInternet(it) } ?: false
+        moviesPresenter.getMoviesPopular(
+            GetMoviesPopularInteractor.Params(BuildConfig.API_KEY, haveInternet)
+        )
     }
 
     override fun onMoviesPopular(movies: List<Movie>) {

@@ -1,6 +1,7 @@
 package com.example.nach_test.di.modules.fragment
 
 import com.example.domain.movies.interactor.GetMoviesPopularInteractor
+import com.example.domain.movies.interactor.SaveMoviesPopularInteractor
 import com.example.nach_test.presenation.movies.MoviesContract
 import com.example.nach_test.presenation.movies.MoviesPresenter
 import com.example.nach_test.ui.movies.MoviesFragment
@@ -19,7 +20,8 @@ abstract class MoviesFragmentModule{
         @Provides
         fun bindMoviesPresenter(
             view: MoviesContract.View,
-            getMoviesPopularInteractor: GetMoviesPopularInteractor): MoviesContract.Presenter =
-                MoviesPresenter(view, getMoviesPopularInteractor)
+            getMoviesPopularInteractor: GetMoviesPopularInteractor,
+            saveMoviesPopularInteractor: SaveMoviesPopularInteractor): MoviesContract.Presenter =
+                MoviesPresenter(view, getMoviesPopularInteractor, saveMoviesPopularInteractor)
     }
 }
