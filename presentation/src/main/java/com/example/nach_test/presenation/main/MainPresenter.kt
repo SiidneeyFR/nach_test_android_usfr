@@ -13,10 +13,7 @@ class MainPresenter @Inject constructor(private val view: MainContract.View) : M
     private var currentLocations = listOf<Location>()
 
     init {
-        launch {
-            val locations = withContext(Dispatchers.IO) { currentLocation }
-            view.showNotifcation(locations)
-        }
+        view.setPresenter(this)
     }
 
 
@@ -29,5 +26,8 @@ class MainPresenter @Inject constructor(private val view: MainContract.View) : M
 
     override fun onDestroy() {
         job.cancel()
+    }
+
+    override fun saveLocation() {
     }
 }

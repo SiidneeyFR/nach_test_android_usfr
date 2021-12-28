@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_locations"
-        android:name="com.example.nach_test.ui.locations.DashboardFragment"
+        android:name="com.example.nach_test.ui.locations.LocationsFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_locations" />
 
     <fragment
         android:id="@+id/navigation_images"
-        android:name="com.example.nach_test.ui.images.NotificationsFragment"
+        android:name="com.example.nach_test.ui.images.ImagesFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_images" />
 </navigation>

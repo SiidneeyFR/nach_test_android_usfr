@@ -29,4 +29,7 @@
     <string name="view_movie_vote_average"><![CDATA[<b>Promedio de votos:</b>]]> %s</string>
     <string name="view_movie_vote_count"><![CDATA[<b>Total de votos:</b>]]> %s</string>
 
+    <!-- textos de images -->
+    <string name="fragment_images_tv_title">Seleccionar imágenes para cargar</string>
+    <string name="fragment_images_bt_images">Seleccionar</string>
 </resources>
