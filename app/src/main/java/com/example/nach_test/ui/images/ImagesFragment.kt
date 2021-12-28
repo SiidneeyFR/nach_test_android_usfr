@@ -88,16 +88,16 @@ class ImagesFragment : Fragment() {
 
     private fun showMessageNoPermisions() {
         val alertDialog = androidx.appcompat.app.AlertDialog.Builder(requireContext()).create()
-        alertDialog.setMessage("Los permisos deben ser autorizados para poder iniciar la App")
+        alertDialog.setMessage(getString(R.string.fragment_images_warming_permissions))
         alertDialog.setCancelable(false)
-        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE, "Ir a ajustes") { _, _ ->
+        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE, getString(R.string.fragment_images_go_settings)) { _, _ ->
             val intent = Intent( Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts(
                 "package", activity?.packageName, null))
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             alertDialog.dismiss()
         }
-        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE, "Cancelar") { _, _ ->
+        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE, getString(R.string.fragment_images_cancel)) { _, _ ->
             alertDialog.dismiss()
             activity?.onBackPressed()
         }
@@ -121,13 +121,13 @@ class ImagesFragment : Fragment() {
 
     private fun displayPhotoDialog() {
         val alertDialog = AlertDialog.Builder(context).create()
-        alertDialog.setMessage("Los permisos deben ser autorizados para poder iniciar la App")
+        alertDialog.setMessage(getString(R.string.fragment_images_load_files))
         alertDialog.setCancelable(false)
-        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE, "Cámara") { _, _ ->
+        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE, getString(R.string.fragment_images_camera)) { _, _ ->
             alertDialog.dismiss()
             getImageFromCamera()
         }
-        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE, "Galería") { _, _ ->
+        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE, getString(R.string.fragment_images_gallery)) { _, _ ->
             alertDialog.dismiss()
             choosePhotoFromGallery()
         }
@@ -181,15 +181,15 @@ class ImagesFragment : Fragment() {
 
     private fun showSuccessMessage(url: String) {
         val alertDialog = AlertDialog.Builder(context).create()
-        alertDialog.setMessage("Imagen cargada exitosamente")
+        alertDialog.setMessage(getString(R.string.fragment_images_success_image))
         alertDialog.setCancelable(false)
-        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE, "Ver en Explorador") { _, _ ->
+        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE, getString(R.string.fragment_images_explorer)) { _, _ ->
             val browserIntent =
                 Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(browserIntent)
             alertDialog.dismiss()
         }
-        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE, "Continuar") { _, _ ->
+        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE, getString(R.string.fragment_images_next)) { _, _ ->
             alertDialog.dismiss()
         }
         alertDialog.show()

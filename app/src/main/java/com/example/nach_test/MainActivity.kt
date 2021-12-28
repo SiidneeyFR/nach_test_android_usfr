@@ -133,16 +133,16 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
     private fun showMessageNoPermisions() {
         val alertDialog = AlertDialog.Builder(this).create()
-        alertDialog.setMessage("Los permisos deben ser autorizados para poder iniciar la App")
+        alertDialog.setMessage(getString(R.string.acitivy_main_permisions))
         alertDialog.setCancelable(false)
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ir a ajustes") { _, _ ->
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.acitivy_main_go_settings)) { _, _ ->
             val intent = Intent( Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts(
                 "package", packageName, null))
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             isReturnSettings = true
         }
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancelar") { _, _ ->
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.acitivy_main_cancel)) { _, _ ->
             onBackPressed()
         }
         alertDialog.show()

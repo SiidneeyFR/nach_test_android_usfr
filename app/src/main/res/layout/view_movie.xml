@@ -7,9 +7,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/view_movie_margin_cv"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="1dp"
-        app:strokeWidth="1dp">
+        app:cardCornerRadius="@dimen/radious"
+        app:cardElevation="@dimen/elevation"
+        app:strokeWidth="@dimen/border">
         <androidx.constraintlayout.widget.ConstraintLayout         
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="@dimen/view_movie_iv_image_margin_end"
-                app:roundedCornerRadius="4dp"
+                app:roundedCornerRadius="@dimen/radious"
                 app:roundTopLeft="true"
                 app:roundTopRight="false"
                 app:roundBottomEnd="false"

@@ -32,4 +32,19 @@
     <!-- textos de images -->
     <string name="fragment_images_tv_title">Seleccionar imágenes para cargar</string>
     <string name="fragment_images_bt_images">Seleccionar</string>
+    <string name="fragment_images_explorer">Ver en Explorador</string>
+    <string name="fragment_images_next">Continuar</string>
+    <string name="fragment_images_success_image">Imagen cargada exitosamente</string>
+    <string name="fragment_images_camera">Cámara</string>
+    <string name="fragment_images_gallery">Galería</string>
+    <string name="fragment_images_warming_permissions">Los permisos deben ser autorizados para poder cargar imagenes</string>
+    <string name="fragment_images_load_files">Selecciona desde donde desea cargar imagen</string>
+    <string name="fragment_images_go_settings">Ir a ajustes</string>
+    <string name="fragment_images_cancel">Cancelar</string>
+
+    <!-- textos main -->
+    <string name="acitivy_main_permisions">Los permisos deben ser autorizados para poder iniciar la App</string>
+    <string name="acitivy_main_go_settings">Ir a ajustes</string>
+    <string name="acitivy_main_cancel">Cancelar</string>
+    <string name="acitivy_main"></string>
 </resources>
