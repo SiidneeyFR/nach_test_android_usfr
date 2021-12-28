@@ -9,6 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+//iniciar el directorio de solicitudes
 class ServicesFactory @Inject constructor() {
 
     var baseURL = ""

@@ -44,6 +44,7 @@ class MoviesFragment : Fragment(), MoviesContract.View, HasSupportFragmentInject
         return bindig.root
     }
 
+    //obtener peliculas populares
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val haveInternet = context?.let { NetworkUtil().haveInternet(it) } ?: false
@@ -52,6 +53,7 @@ class MoviesFragment : Fragment(), MoviesContract.View, HasSupportFragmentInject
         )
     }
 
+    //mostrar películas o mostrar mensaje de vacio
     override fun onMoviesPopular(movies: List<Movie>) {
         if(movies.isNotEmpty()) {
             createMoviesList(movies)
@@ -60,6 +62,7 @@ class MoviesFragment : Fragment(), MoviesContract.View, HasSupportFragmentInject
         }
     }
 
+    //crear listado en un RecyclerView
     private fun createMoviesList(movies: List<Movie>) {
         val advanceProductAdapter = MovieAdpater(movies)
         val gridLayoutManager = GridLayoutManager(context, 1)
@@ -73,6 +76,7 @@ class MoviesFragment : Fragment(), MoviesContract.View, HasSupportFragmentInject
 
     }
 
+    // mostra texto de no hay peliculas
     private fun showEmpty() {
         bindig.fragmentMoviesTvEmpty.visibility = View.VISIBLE
     }

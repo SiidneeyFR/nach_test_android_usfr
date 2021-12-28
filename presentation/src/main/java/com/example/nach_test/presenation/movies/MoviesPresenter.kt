@@ -15,6 +15,7 @@ class MoviesPresenter @Inject constructor(private val view: MoviesContract.View,
         view.setPresenter(this)
     }
 
+    //acción para obtener peliculas
     override fun getMoviesPopular(params: GetMoviesPopularInteractor.Params) {
         getMoviesPopularInteractor.execute(object : DisposableSingleObserver<List<Movie>>(){
             override fun onSuccess(movies: List<Movie>) {
@@ -28,6 +29,7 @@ class MoviesPresenter @Inject constructor(private val view: MoviesContract.View,
         }, params)
     }
 
+    //acción para guardar peliculas en cache
     private fun saveMovies(params: SaveMoviesPopularInteractor.Params) {
         saveMoviesPopularInteractor.execute(object : DisposableSingleObserver<String?>(){
             override fun onError(e: Throwable) {

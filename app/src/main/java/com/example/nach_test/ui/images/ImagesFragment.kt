@@ -51,6 +51,7 @@ class ImagesFragment : Fragment() {
         return bindig.root
     }
 
+    //iniciar validando los permisos
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requestPermissionLocation()
@@ -59,6 +60,7 @@ class ImagesFragment : Fragment() {
         }
     }
 
+    //si no se tienen los permisos solicitar
     private fun requestPermissionLocation() {
         when {
             ContextCompat.checkSelfPermission(
@@ -77,6 +79,7 @@ class ImagesFragment : Fragment() {
         }
     }
 
+    //validar si los permisos fueron aceptados, si no fueron mostrar alerta
     override fun onRequestPermissionsResult(requestCode: Int,permissions: Array<out String>,grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == resultRequestPermission) {
@@ -86,6 +89,7 @@ class ImagesFragment : Fragment() {
         }
     }
 
+    // mostrar alaerta de que los permisos son nececarios, poder dirigirlos a  ajustes o atras
     private fun showMessageNoPermisions() {
         val alertDialog = androidx.appcompat.app.AlertDialog.Builder(requireContext()).create()
         alertDialog.setMessage(getString(R.string.fragment_images_warming_permissions))
@@ -104,6 +108,7 @@ class ImagesFragment : Fragment() {
         alertDialog.show()
     }
 
+    //subir imagen a Firebease storage
     private fun uploadFiles(bitmap: Bitmap, name: String) {
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
@@ -119,6 +124,7 @@ class ImagesFragment : Fragment() {
         }
     }
 
+    //Alerta para saber desde donde subir imagen cámara o aleria
     private fun displayPhotoDialog() {
         val alertDialog = AlertDialog.Builder(context).create()
         alertDialog.setMessage(getString(R.string.fragment_images_load_files))
@@ -135,6 +141,7 @@ class ImagesFragment : Fragment() {
 
     }
 
+    // iniciar subir iamgen desde camara
     private fun getImageFromCamera() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -163,6 +170,7 @@ class ImagesFragment : Fragment() {
         }
     }
 
+    // crear archivo de imagen
     @Throws(IOException::class)
     private fun createImageFile(): File {
         // Create an image file name
@@ -179,6 +187,7 @@ class ImagesFragment : Fragment() {
         return image
     }
 
+    //alertar para carga exisotsa de imagen
     private fun showSuccessMessage(url: String) {
         val alertDialog = AlertDialog.Builder(context).create()
         alertDialog.setMessage(getString(R.string.fragment_images_success_image))
@@ -195,6 +204,8 @@ class ImagesFragment : Fragment() {
         alertDialog.show()
     }
 
+
+    // recibir la imagen capturada o seleccionada en galeria
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RESULT_LOAD_IMG_GALLERY && data != null) {
@@ -262,6 +273,7 @@ class ImagesFragment : Fragment() {
         }
     }
 
+    // iniciar accion de seleccionar imagen desde galeria
     private fun choosePhotoFromGallery() {
         val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         galleryIntent.type = "image/*"

@@ -11,6 +11,7 @@ class MoviesDataRepository (
     private val movieDataMapper: MovieDataMapper
 ) : MoviesRepository {
 
+    //obtener peliculas si hay conexion de remoto o caso contrario de local
     override fun getMoviesPopular(apiKey: String, haveInternet: Boolean): Single<List<Movie>> {
         return if (haveInternet) {
             factory.retrieveRemoteDataStore()
@@ -22,8 +23,7 @@ class MoviesDataRepository (
         }
     }
 
-
-
+    // guadar peliculas en bd local
     override fun saveMoviesPopular(movies: List<Movie>): Single<String?> {
         val moviesEnt = movies.map { movieDataMapper.mapToEntity(it) }
         return factory.retrieveDataStore().saveMoviesPopula(moviesEnt)

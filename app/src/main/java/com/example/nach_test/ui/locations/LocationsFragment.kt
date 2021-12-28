@@ -55,6 +55,7 @@ class LocationsFragment : Fragment(), LocationsContract.View, HasSupportFragment
         return bindig.root
     }
 
+    // iniciar mapa
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindig.map.onCreate(savedInstanceState)
@@ -62,12 +63,14 @@ class LocationsFragment : Fragment(), LocationsContract.View, HasSupportFragment
         bindig.map.getMapAsync(this)
     }
 
+    //iniciar presenter
     override fun setPresenter(presenter: LocationsPresenter) {
         this.locationsPresenter = presenter
     }
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> =  fragmentInjector
 
+    //obtener localizacion guardas en firebase firestore, crear marcardores en el mapa
     override fun onGetLocations(locations: List<Location>) {
         db.collection("locations")
             .get()
@@ -86,6 +89,7 @@ class LocationsFragment : Fragment(), LocationsContract.View, HasSupportFragment
             }
     }
 
+    //iniciar ubicación del mapa
     override fun onMapReady(googleMap: GoogleMap) {
         this.googleMap = googleMap
         with(this.googleMap){

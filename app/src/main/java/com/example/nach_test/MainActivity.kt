@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
     private var locationManager : LocationManager? = null
     private var mLocationRequest: LocationRequest? = null
 
+    //iniciar navegación, solicitar permiso de ubicación
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -78,6 +79,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         }
     }
 
+    //mostrar notifcaciones de ubicación
     override fun showNotifcation(location: Location) {
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val contentNotification = getString(R.string.activity_main_notification_content, location.lat.toString(), location.lon.toString())
@@ -102,6 +104,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         notificationManager.notify(0, notification.build())
     }
 
+    // validar permisos de ubicación, si no tiene solicitar, caso contrrar iniciar obtener ubicación
     private fun requestPermissionLocation() {
         when {
             ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION
@@ -120,6 +123,9 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         }
     }
 
+    // validar si lo permisos fueron obtenidos
+    // si -  iniciar a obtener ubicacion
+    // no - mostrar alerta de que los permisos son necesarios
     override fun onRequestPermissionsResult(requestCode: Int,permissions: Array<out String>,grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == resultRequestPermission) {
@@ -131,6 +137,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         }
     }
 
+    // alerta de permisos son necesarios, opciones de ir a jsutes o salir
     private fun showMessageNoPermisions() {
         val alertDialog = AlertDialog.Builder(this).create()
         alertDialog.setMessage(getString(R.string.acitivy_main_permisions))
@@ -153,6 +160,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         mainPresenter.onDestroy()
     }
 
+    //validar que despues de ir ajustes lo permisos fueron activados
     override fun onResume() {
         super.onResume()
         if (isReturnSettings) {
@@ -169,6 +177,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         this.mainPresenter = presenter
     }
 
+    //iniciar a obtner la ubicación, en callback guardar, detener 5min
     @SuppressLint("MissingPermission")
     private fun startServiceLocation() {
         getLocation(object : LocationCallback() {
@@ -187,11 +196,12 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         })
     }
 
+    //iniciar provedor de ubicación
     @SuppressLint("MissingPermission")
     fun getLocation(locationCallback: LocationCallback){
         try {
             val UPDATE_INTERVAL = minutes
-            val FASTEST_INTERVAL: Long = 4000 /* 60 sec */
+            val FASTEST_INTERVAL: Long = 4000
             val expirationTime: Long = 30000
 
 
@@ -216,6 +226,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         }
     }
 
+    //guardar ubicacion en firebase firestore
     private fun saveLocation(location: android.location.Location) {
         val locationMap = hashMapOf(
             "lat" to location.latitude,
@@ -235,6 +246,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
             }
     }
 
+    //obtener la fecha para guadar la ubicación
     private fun getCurrentDate(): String {
         val currentTime = System.currentTimeMillis()
         val calendar = Calendar.getInstance()

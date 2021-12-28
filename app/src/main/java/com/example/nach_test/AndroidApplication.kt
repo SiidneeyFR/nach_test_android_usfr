@@ -20,6 +20,7 @@ class AndroidApplication: Application(), HasActivityInjector, HasServiceInjector
     @Inject
     lateinit var serviceDispatchingAndroidInjector: DispatchingAndroidInjector<Service>
 
+    // iniciar la inyeccion de dependecias, iniciar libreria para imagenes
     override fun onCreate() {
         super.onCreate()
         DaggerApplicationComponent

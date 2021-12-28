@@ -10,6 +10,7 @@ import javax.inject.Inject
 class MoviesCacheImpl @Inject constructor( val database: DataBaseApp, val mapper: CacheMovieMapper)
     : MoviesCache {
 
+    //obtener peliculas de bd local
     override fun getMovies(): Single<List<MovieEntity>> {
         return Single.create { e ->
             val movies = database.cacheMovieItemDao()
@@ -21,6 +22,7 @@ class MoviesCacheImpl @Inject constructor( val database: DataBaseApp, val mapper
         }
     }
 
+    //guardar peliculas en bd local
     override fun saveMovies(movies: List<MovieEntity>): Single<String?> {
         return Single.create { e ->
             movies.forEach {

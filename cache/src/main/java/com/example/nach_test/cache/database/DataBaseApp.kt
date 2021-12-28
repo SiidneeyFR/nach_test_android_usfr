@@ -21,11 +21,8 @@ abstract class DataBaseApp : RoomDatabase() {
 
         private var INSTANCE: DataBaseApp? = null
 
-        /**
-         * Creates a database
-         */
+        //crear base datos
         fun createDatabase(context: Context): DataBaseApp {
-
             val builder = Room.databaseBuilder(context, DataBaseApp::class.java, DataBaseConstants.DATA_BASE_NAME)
             if (INSTANCE == null) {
                 INSTANCE = builder.build()

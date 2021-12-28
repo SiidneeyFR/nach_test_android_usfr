@@ -10,6 +10,7 @@ class NetworkUtil {
     val TYPE_MOBILE = 2
     val TYPE_NOT_CONNECTED = 0
 
+    //obtener si hay conexión a intener por wifi o datos
     private fun getConnectivityStatus(context: Context): Int {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -31,6 +32,7 @@ class NetworkUtil {
         }
     }
 
+    //validar si hay conexón a internet
     fun haveInternet(context: Context): Boolean {
         val conn: Int = getConnectivityStatus(context)
         return when (conn) {
