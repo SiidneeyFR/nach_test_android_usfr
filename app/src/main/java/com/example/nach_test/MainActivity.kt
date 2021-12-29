@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
     }
 
     //mostrar notifcaciones de ubicación
-    override fun showNotifcation(location: Location) {
+    private fun showNotifcation(location: Location) {
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val contentNotification = getString(R.string.activity_main_notification_content, location.lat.toString(), location.lon.toString())
 
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == resultRequestPermission) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                mainPresenter.getLocations()
+                startServiceLocation()
             } else {
                 showMessageNoPermisions()
             }
@@ -157,7 +157,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
     override fun onDestroy() {
         super.onDestroy()
-        mainPresenter.onDestroy()
     }
 
     //validar que despues de ir ajustes lo permisos fueron activados
